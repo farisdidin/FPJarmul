@@ -32,20 +32,32 @@ socket.on('notifyUser', function(user){
 });
  
 $(document).ready(function(){
-  var name = makeid();
-  $('#user').val(name);
-  socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+  // console.log("document ready");
+  makeid();
+  
 });
  
-function makeid() {
-  var text = prompt ("Welcome to TChatting !!\n---- Insert Username ---");
-  if (text=="") {
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+// function makeid() {
+//   var text = prompt ("Welcome to TChatting !!\n---- Insert Username ---");
+//   if (text=="") {
+//   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
  
-  for( var i=0; i < 5; i++ ) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+//   for( var i=0; i < 5; i++ ) {
+//     text += possible.charAt(Math.floor(Math.random() * possible.length));
+//   }
+//   }
+//   return text;
+// }
+  function makeid(){
+    console.log('make id')
+    window.addEventListener('message', function(event) {
+      // alert(`Received ${event.data} from ${event.origin}`);
+      // console.log (event.data);
+      var name = event.data;
+      $('#user').val(event.data);
+      socket.emit('chatMessage', 'System', '<b>' + event.data + '</b> has joined the discussion');
+      //return event.data;
+      $
+    });
   }
-  }
-  return text;
-}
 

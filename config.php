@@ -1,8 +1,8 @@
 <?php
   $db_host = "localhost";
   $db_user = "root";
-  $db_pass = "password";
-  $db_name = "tctreaming";
+  $db_pass = "didin";
+  $db_name = "jarmul";
 
   try {    
     //create PDO connection 

@@ -1,4 +1,17 @@
-<?php require_once("auth.php"); ?>
+<?php 
+
+require_once("auth.php"); 
+
+if(isset($_POST['logout'])){
+  session_start();
+  unset($_SESSION["user"]);
+  header("Location: login.php");
+}
+
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +45,23 @@
 
   <!-- load projekktor js -->
   <script type="text/javascript" src="http://projekktor.wlodkowski.net/lib/release/1.3.04/projekktor-1.3.04.js"></script>  
+  
 </head>
 
 <body>
 	<div class="limiter">
 		<div class="container-login100">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+          <div class="col-4">
+    				<form class="login100-form validate-form" action="" method="POST">
+              <input type="submit" class="login100-form-btn" name="logout" value="Logout"/>
+            </form>
+          </div>
+        </div>
+      </div>
       <div class="text-center text-white m-b-10">
         <h1 class="m-b-10">Local Video Streaming</h1>
         <h2>Final Project Multimedia Networking</h2>
@@ -50,7 +75,7 @@
             <script type="text/javascript">
               $(document).ready(function() {
                 projekktor('#player_a', {
-                  poster: 'http://projekktor.wlodkowski.net/media/intro.jpg',
+                  poster: '',
                   title: 'Projekktor - RTMP support',
                   playerFlashMP4: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
                   playerFlashMP3: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
@@ -60,11 +85,11 @@
                   //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
                   playlist: [
                     {
-                      0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'},
+                      0: {src: 'rtmp://10.151.252.139/live/test', type:'video/flv'},
                   
                     },
                     {
-                      0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'}
+                      0: {src: 'rtmp://10.151.252.139/live/test', type:'video/flv'}
                     }
                   ]  
                 }, 
@@ -79,8 +104,9 @@
         </div>
 
         <div class = "col-md-5 col-sm-5 col-xs-5">
-          <iframe class= "chat-frame" src="http://10.151.36.70:3000" scrolling="yes"></iframe>
+          <iframe id="iframe" class= "chat-frame" src="http://10.151.252.139:3000" scrolling="yes"></iframe>
         </div>
+        
       </div>
 		</div>
 	</div>
@@ -99,9 +125,17 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+  </script>
+  <script>
+    $(window).bind("load",function(){
+      console.log('<?php echo $_SESSION['user']['username']?>')
+      iframe.contentWindow.postMessage("<?php echo $_SESSION['user']['username']?>", '*');
+      console.log("top");
+
+    });
+  </script><!--===============================================================================================-->
+
+  <script src="js/main.js"></script>
 
 </body>
 </html>
