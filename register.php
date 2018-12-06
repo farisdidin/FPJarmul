@@ -1,3 +1,36 @@
+<?php
+
+require_once("config.php");
+
+if(isset($_POST['register'])){
+
+    // filter data yang diinputkan
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    // enkripsi password
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+    // menyiapkan query
+    $sql = "INSERT INTO users (email, username, password) 
+            VALUES (:email, :username, :password)";
+    $stmt = $db->prepare($sql);
+
+    // bind parameter ke query
+    $params = array(
+        ":email" => $email,
+        ":username" => $username,
+        ":password" => $password
+    );
+
+    // eksekusi query untuk menyimpan ke database
+    $saved = $stmt->execute($params);
+
+    // jika query simpan berhasil, maka user sudah terdaftar
+    // maka alihkan ke halaman login
+    if($saved) header("Location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +63,18 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="" method="POST">
 					<span class="login100-form-title">
 						<h2 class="m-b-10">TCtreaming</h2>
 					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Email is required and must be haha@xyz.bla!">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Username is required!">
 						<input class="input100" type="text" name="username" placeholder="Username">
@@ -44,7 +85,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required!">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -52,13 +93,11 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Register
-						</button>
+						<input type="submit" class="login100-form-btn" name="register" value="Register"/>
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="index.html">
+						<a class="txt2" href="login.php">
 							<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
 							Already have Account
 						</a>
@@ -67,9 +106,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-
 	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
