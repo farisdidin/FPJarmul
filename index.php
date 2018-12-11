@@ -71,6 +71,7 @@ if(isset($_POST['logout'])){
           <div id="player_a" class="projekktor" style="float:left">
             <noscript><p>No JavaScript support.</p></noscript>
           </div>
+          
           <div style="float:left">
             <script type="text/javascript">
               $(document).ready(function() {
@@ -85,11 +86,11 @@ if(isset($_POST['logout'])){
                   //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
                   playlist: [
                     {
-                      0: {src: 'rtmp://10.151.252.139/live/test', type:'video/flv'},
+                      0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'},
                   
                     },
                     {
-                      0: {src: 'rtmp://10.151.252.139/live/test', type:'video/flv'}
+                      0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'}
                     }
                   ]  
                 }, 
@@ -100,11 +101,12 @@ if(isset($_POST['logout'])){
                 );
               });
             </script>
+            
           </div>         
         </div>
 
         <div class = "col-md-5 col-sm-5 col-xs-5">
-          <iframe id="iframe" class= "chat-frame" src="http://10.151.252.139:3000" scrolling="yes"></iframe>
+          <iframe id="iframe" class= "chat-frame" src="http://10.151.252.147:3000" scrolling="yes"></iframe>
         </div>
         
       </div>
