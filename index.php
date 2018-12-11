@@ -106,7 +106,7 @@ if(isset($_POST['logout'])){
         </div>
 
         <div class = "col-md-5 col-sm-5 col-xs-5">
-          <iframe id="iframe" class= "chat-frame" src="http://10.151.252.147:3000" scrolling="yes"></iframe>
+          <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>
         </div>
         
       </div>
