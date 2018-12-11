@@ -3,33 +3,34 @@
 require_once("config.php");
 
 if(isset($_POST['login'])){
+	$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+	$sql = "SELECT * FROM users WHERE username=:username";
+	$stmt = $db->prepare($sql);
+	
+	// bind parameter ke query
+	$params = array(
+			":username" => $username
+	);
 
-    $sql = "SELECT * FROM users WHERE username=:username";
-    $stmt = $db->prepare($sql);
-    
-    // bind parameter ke query
-    $params = array(
-        ":username" => $username
-    );
+	$stmt->execute($params);
 
-    $stmt->execute($params);
+	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // jika user terdaftar
-    if($user){
-        // verifikasi password
-        if(password_verify($password, $user["password"])){
-            // buat Session
-            session_start();
-            $_SESSION["user"] = $user;
-            // login sukses, alihkan ke halaman timeline
-            header("Location: index.php");
-        }
-    }
+	// jika user terdaftar
+	if($user){
+		// verifikasi password
+		if(password_verify($password, $user["password"])){
+			// buat Session
+			session_start();
+			$_SESSION["user"] = $user;
+			$_SESSION["username"] = $username;
+			// login sukses, alihkan ke halaman timeline
+			header("Location: index.php");
+		}
+	}
 }
 ?>
 
@@ -63,12 +64,10 @@ if(isset($_POST['login'])){
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="images/img-01.png" alt="IMG">
 				</div>
-
 				<form class="login100-form validate-form" action="" method="POST">
 					<span class="login100-form-title">
-						<h2 class="m-b-10">TCtreaming</h2>
+						<h1 class="m-b-10">TCtreaming</h1>
 					</span>
-
 					<div class="wrap-input100 validate-input" data-validate = "Username is required!">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
@@ -76,7 +75,6 @@ if(isset($_POST['login'])){
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
 					</div>
-
 					<div class="wrap-input100 validate-input" data-validate = "Password is required!">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
@@ -84,11 +82,9 @@ if(isset($_POST['login'])){
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
 					<div class="container-login100-form-btn">
 						<input type="submit" class="login100-form-btn" name="login" value="Login"/>
 					</div>
-
 					<div class="text-center p-t-136">
 						<a class="txt2" href="register.php">
 							Create your Account

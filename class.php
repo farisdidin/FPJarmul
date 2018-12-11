@@ -58,13 +58,13 @@ if(isset($_POST['logout'])){
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="enroll-class.php">Enroll Course</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="choose-class.php">Your Courses</a>
               </li>
             </ul>
@@ -87,9 +87,47 @@ if(isset($_POST['logout'])){
       <!-- MAIN CONTENT -->
       <div class="container" style="margin-top: 60px;">
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
-          <h5>Welcome, <?php echo $_SESSION["username"]; ?>!</h5>        
-          <h1 class="display-2 m-t-30 m-b-20"><strong>TCtreaming</strong></h1>
-          <h3><i>Your Favorite Online Courses</i></h3>
+          <h1 class="m-b-10">Blabla Course</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-7 col-sm-7 col-xs-7">
+            <div id="player_a" class="projekktor" style="float:left">
+              <noscript><p>No JavaScript support.</p></noscript>
+            </div>
+            <div style="float:left">
+              <script type="text/javascript">
+                $(document).ready(function() {
+                  projekktor('#player_a', {
+                    poster: 'http://projekktor.wlodkowski.net/media/intro.jpg',
+                    title: 'Projekktor - RTMP support',
+                    playerFlashMP4: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
+                    playerFlashMP3: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
+                    width: 640,
+                    height: 385,
+                    platforms: ['browser', 'flash', 'vlc'],
+                    //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
+                    playlist: [
+                      {
+                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'},
+                    
+                      },
+                      {
+                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'}
+                      }
+                    ]  
+                  }, 
+                  function(player) {
+                    window.p = player;
+                    p.setDebug(true);
+                  }
+                  );
+                });
+              </script>
+            </div>         
+          </div>
+          <div class = "col-md-5 col-sm-5 col-xs-5">
+            <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>
+          </div>
         </div>
       </div>
 		</div>

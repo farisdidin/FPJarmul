@@ -58,13 +58,13 @@ if(isset($_POST['logout'])){
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="enroll-class.php">Enroll Course</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="choose-class.php">Your Courses</a>
               </li>
             </ul>
@@ -87,15 +87,21 @@ if(isset($_POST['logout'])){
       <!-- MAIN CONTENT -->
       <div class="container" style="margin-top: 60px;">
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
-          <h5>Welcome, <?php echo $_SESSION["username"]; ?>!</h5>        
-          <h1 class="display-2 m-t-30 m-b-20"><strong>TCtreaming</strong></h1>
-          <h3><i>Your Favorite Online Courses</i></h3>
+          <h1 class="m-b-10">Your Courses</h1>
+        </div>
+        <div class="row justify-content-center">
+          <!-- berisi list2 course yg udh di enroll ama dia -->
+          <!-- course berdasarkan database -->
+          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course A</a>
+          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course B</a>
+          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course C</a>
+
         </div>
       </div>
 		</div>
 	</div>
-	
-	
+
+  <!-- LOAD JS -->
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

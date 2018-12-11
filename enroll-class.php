@@ -58,10 +58,10 @@ if(isset($_POST['logout'])){
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="enroll-class.php">Enroll Course</a>
               </li>
               <li class="nav-item">
@@ -87,9 +87,24 @@ if(isset($_POST['logout'])){
       <!-- MAIN CONTENT -->
       <div class="container" style="margin-top: 60px;">
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
-          <h5>Welcome, <?php echo $_SESSION["username"]; ?>!</h5>        
-          <h1 class="display-2 m-t-30 m-b-20"><strong>TCtreaming</strong></h1>
-          <h3><i>Your Favorite Online Courses</i></h3>
+          <h1 class="m-b-10">Enroll Course</h1>
+        </div>
+        <div class="row justify-content-center">
+          <form class="login100-form validate-form" action="" method="POST">
+            <div class="wrap-input100 validate-input" data-validate = "Course is required!">
+              <select class="input100" name="course">
+                <option>-- Choose Course --</option>
+                <!-- <option> insert here </option> -->
+              </select>
+              <span class="focus-input100"></span>
+              <span class="symbol-input100">
+                <i class="fa fa-book" aria-hidden="true"></i>
+              </span>
+            </div>
+            <div class="container-login100-form-btn">
+              <input type="submit" class="login100-form-btn" name="enroll" value="Enroll Class"/>
+            </div>
+          </form>
         </div>
       </div>
 		</div>
