@@ -1,4 +1,17 @@
-<?php require_once("auth.php"); ?>
+<?php 
+
+require_once("auth.php"); 
+
+if(isset($_POST['logout'])){
+  session_start();
+  unset($_SESSION["user"]);
+  header("Location: login.php");
+}
+
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +45,7 @@
 
   <!-- load projekktor js -->
   <script type="text/javascript" src="http://projekktor.wlodkowski.net/lib/release/1.3.04/projekktor-1.3.04.js"></script>  
+  
 </head>
 
 <body>
@@ -79,10 +93,10 @@
             </div>         
           </div>
 
-          <div class = "col-md-5 col-sm-5 col-xs-5">
-            <iframe class= "chat-frame" src="http://10.151.36.70:3000" scrolling="yes"></iframe>
-          </div>
+        <div class = "col-md-5 col-sm-5 col-xs-5">
+          <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>
         </div>
+        
       </div>
      
 		</div>
@@ -102,9 +116,17 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+  </script>
+  <script>
+    $(window).bind("load",function(){
+      console.log('<?php echo $_SESSION['user']['username']?>')
+      iframe.contentWindow.postMessage("<?php echo $_SESSION['user']['username']?>", '*');
+      console.log("top");
+
+    });
+  </script><!--===============================================================================================-->
+
+  <script src="js/main.js"></script>
 
 </body>
 </html>

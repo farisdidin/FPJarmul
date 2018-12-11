@@ -4,7 +4,7 @@ function submitfunction(){
   var from = $('#user').val();
   var message = $('#m').val();
   if(message != '') {
-  socket.emit('chatMessage', from, message);
+  socket.emit('sendchat',message);
 }
 $('#m').val('').focus();
   return false;
@@ -14,14 +14,31 @@ function notifyTyping() {
   var user = $('#user').val();
   socket.emit('notifyUser', user);
 }
- 
-socket.on('chatMessage', function(from, msg){
+
+function switchRoom(room){
+    socket.emit('switchRoom', room);
+  }
+
+socket.on('updaterooms', function(rooms, current_room) {
+  $('#rooms').empty();
+  $.each(rooms, function(key, value) {
+    if(value == current_room){
+      $('#rooms').append('<div>' + value + '</div>');
+    }
+    else {
+      $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+    }
+  });
+});
+
+socket.on('updatechat', function (username, data) {
   var me = $('#user').val();
-  var color = (from == me) ? 'green' : '#009afd';
-  var from = (from == me) ? 'Me' : from;
-  $('#messages').append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
+  var color = (username == me) ? 'green' : '#009afd';
+  var username = (username == me) ? 'Me' : username;
+  $('#messages').append('<li><b style="color:' + color +'">' + username + ':</b> ' + data + '</li>');
   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 });
+
  
 socket.on('notifyUser', function(user){
   var me = $('#user').val();
@@ -32,20 +49,22 @@ socket.on('notifyUser', function(user){
 });
  
 $(document).ready(function(){
-  var name = makeid();
-  $('#user').val(name);
-  socket.emit('chatMessage', 'System', '<b>' + name + '</b> has joined the discussion');
+  console.log("document ready");
+  makeid();
+  
 });
  
-function makeid() {
-  var text = prompt ("Welcome to TChatting !!\n---- Insert Username ---");
-  if (text=="") {
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
- 
-  for( var i=0; i < 5; i++ ) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  function makeid(){
+    console.log('make id')
+    window.addEventListener('message', function(event) {
+      // alert(`Received ${event.data} from ${event.origin}`);
+      // console.log (event.data);
+      var name = event.data;
+      console.log('message')
+      $('#user').val(event.data);
+      socket.emit('adduser',event.data);
+      //return event.data;
+      $
+    });
   }
-  }
-  return text;
-}
 
