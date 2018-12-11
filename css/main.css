@@ -169,10 +169,10 @@ iframe {
   align-items: center;
   padding: 15px;
   background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -webkit-linear-gradient(-135deg, #5084c8, #091a6e);
+  background: -o-linear-gradient(-135deg, #5084c8, #091a6e);
+  background: -moz-linear-gradient(-135deg, #5084c8, #091a6e);
+  background: linear-gradient(-135deg, #5084c8, #091a6e);
 }
 
 .wrap-login100 {

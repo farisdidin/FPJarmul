@@ -37,51 +37,54 @@
 <body>
 	<div class="limiter">
 		<div class="container-login100">
-      <div class="text-center text-white m-b-10">
-        <h1 class="m-b-10">Local Video Streaming</h1>
-        <h2>Final Project Multimedia Networking</h2>
-      </div>
-      <div  class = "row">
-        <div class = "col-md-7 col-sm-7 col-xs-7">
-          <div id="player_a" class="projekktor" style="float:left">
-            <noscript><p>No JavaScript support.</p></noscript>
+      <div class="container">
+        <div class="jumbotron text-center text-white" style="background-color: transparent !important">
+          <h1 class="m-b-10">TCtreaming</h1>
+          <h5>Final Project Multimedia Networking</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-7 col-sm-7 col-xs-7">
+            <div id="player_a" class="projekktor" style="float:left">
+              <noscript><p>No JavaScript support.</p></noscript>
+            </div>
+            <div style="float:left">
+              <script type="text/javascript">
+                $(document).ready(function() {
+                  projekktor('#player_a', {
+                    poster: 'http://projekktor.wlodkowski.net/media/intro.jpg',
+                    title: 'Projekktor - RTMP support',
+                    playerFlashMP4: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
+                    playerFlashMP3: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
+                    width: 640,
+                    height: 385,
+                    platforms: ['browser', 'flash', 'vlc'],
+                    //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
+                    playlist: [
+                      {
+                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'},
+                    
+                      },
+                      {
+                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'}
+                      }
+                    ]  
+                  }, 
+                  function(player) {
+                    window.p = player;
+                    p.setDebug(true);
+                  }
+                  );
+                });
+              </script>
+            </div>         
           </div>
-          <div style="float:left">
-            <script type="text/javascript">
-              $(document).ready(function() {
-                projekktor('#player_a', {
-                  poster: 'http://projekktor.wlodkowski.net/media/intro.jpg',
-                  title: 'Projekktor - RTMP support',
-                  playerFlashMP4: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
-                  playerFlashMP3: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
-                  width: 640,
-                  height: 385,
-                  platforms: ['browser', 'flash', 'vlc'],
-                  //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
-                  playlist: [
-                    {
-                      0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'},
-                  
-                    },
-                    {
-                      0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'}
-                    }
-                  ]  
-                }, 
-                function(player) {
-                  window.p = player;
-                  p.setDebug(true);
-                }
-                );
-              });
-            </script>
-          </div>         
-        </div>
 
-        <div class = "col-md-5 col-sm-5 col-xs-5">
-          <iframe class= "chat-frame" src="http://10.151.36.70:3000" scrolling="yes"></iframe>
+          <div class = "col-md-5 col-sm-5 col-xs-5">
+            <iframe class= "chat-frame" src="http://10.151.36.70:3000" scrolling="yes"></iframe>
+          </div>
         </div>
       </div>
+     
 		</div>
 	</div>
 	
