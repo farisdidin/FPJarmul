@@ -33,6 +33,8 @@ socket.on('updaterooms', function(rooms, current_room) {
 
 socket.on('updatechat', function (username, data) {
   var me = $('#user').val();
+  console.log('myname is' + me);
+  console.log('client name is ' + username);
   var color = (username == me) ? 'green' : '#009afd';
   var username = (username == me) ? 'Me' : username;
   $('#messages').append('<li><b style="color:' + color +'">' + username + ':</b> ' + data + '</li>');
@@ -59,10 +61,13 @@ $(document).ready(function(){
     window.addEventListener('message', function(event) {
       // alert(`Received ${event.data} from ${event.origin}`);
       // console.log (event.data);
-      var name = event.data;
-      console.log('message')
-      $('#user').val(event.data);
-      socket.emit('adduser',event.data);
+      var name = event.data.username;
+      var room = event.data.room;
+
+      console.log(room);
+      console.log(name);
+      $('#user').val(name);
+      socket.emit('adduser',name,room);
       //return event.data;
       $
     });

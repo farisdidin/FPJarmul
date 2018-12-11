@@ -153,7 +153,10 @@ var_dump($_GET);
   <script>
     $(window).bind("load",function(){
       console.log('<?php echo $_SESSION['user']['username']?>')
-      iframe.contentWindow.postMessage("<?php echo $_SESSION['user']['username']?>", '*');
+      var message = '{"room":"<?php echo $currentCourse?>","username":"<?php echo $_SESSION['user']['username']?>"}';
+
+      obj = JSON.parse(message);
+      iframe.contentWindow.postMessage(obj, '*');
       console.log("top");
     });
   </script><!--===============================================================================================-->

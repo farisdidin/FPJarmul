@@ -18,15 +18,15 @@ var rooms = ['room1','room2','room3','room4'];
  
 // Register events on socket connection
 io.on('connection', function(socket){ 
-  socket.on('adduser',function(username){
+  socket.on('adduser',function(username,classroom){
     console.log(username);
     socket.username = username;
-    socket.room = 'room1';
+    socket.room = classroom;
     usernames[username] = username;
-    socket.join('room1');
-    socket.emit('updatechat','SERVER','you have connected to room1');
-    socket.broadcast.to('room1').emit('updatechat','SERVER', username + ' has connected to this room');
-    socket.emit('updaterooms',rooms,'room1');
+    socket.join(classroom);
+    socket.emit('updatechat','SERVER','you have connected to '+classroom);
+    socket.broadcast.to(classroom).emit('updatechat','SERVER', username + ' has connected to '+ classroom);
+    socket.emit('updaterooms',rooms,classroom);
   })
   socket.on('sendchat', function(data){
     console.log(data);
