@@ -128,7 +128,7 @@ var_dump($_GET);
             </div>        
           </div>
           <div class = "col-md-5 col-sm-5 col-xs-5">
-            <iframe id="iframe" class= "chat-frame" src="http://10.151.252.147:3000" scrolling="yes"></iframe>
+            <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>
           </div>
         </div>
       </div>
@@ -153,7 +153,10 @@ var_dump($_GET);
   <script>
     $(window).bind("load",function(){
       console.log('<?php echo $_SESSION['user']['username']?>')
-      iframe.contentWindow.postMessage("<?php echo $_SESSION['user']['username']?>", '*');
+      var message = '{"room":"<?php echo $currentCourse?>","username":"<?php echo $_SESSION['user']['username']?>"}';
+
+      obj = JSON.parse(message);
+      iframe.contentWindow.postMessage(obj, '*');
       console.log("top");
     });
   </script><!--===============================================================================================-->
