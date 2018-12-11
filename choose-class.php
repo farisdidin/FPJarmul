@@ -92,9 +92,9 @@ if(isset($_POST['logout'])){
         <div class="row justify-content-center">
           <!-- berisi list2 course yg udh di enroll ama dia -->
           <!-- course berdasarkan database -->
-          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course A</a>
-          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course B</a>
-          <a class="login100-form-btn m-b-10" href="class.php" role="button">Course C</a>
+          <a class="login100-form-btn m-b-10" href="class.php?class=0" role="button">Multimedia Networking</a>
+          <a class="login100-form-btn m-b-10" href="class.php?class=1" role="button">Data Compression</a>
+          <a class="login100-form-btn m-b-10" href="class.php?class=2" role="button">Computer Networking</a>
 
         </div>
       </div>

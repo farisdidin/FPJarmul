@@ -7,7 +7,9 @@ if(isset($_POST['logout'])){
   unset($_SESSION["user"]);
   header("Location: login.php");
 }
-
+$course=array("Multimedia Networking", "Data Compression", "Computer Network");
+$currentCourse = $course[$_GET['class']];
+var_dump($_GET);
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +89,7 @@ if(isset($_POST['logout'])){
       <!-- MAIN CONTENT -->
       <div class="container" style="margin-top: 60px;">
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
-          <h1 class="m-b-10">Blabla Course</h1>
+          <h1 class="m-b-10"><?php echo $currentCourse?> Course</h1>
         </div>
         <div class="row">
           <div class="col-md-7 col-sm-7 col-xs-7">
@@ -108,11 +110,11 @@ if(isset($_POST['logout'])){
                     //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
                     playlist: [
                       {
-                        0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'},
+                        0: {src: 'rtmp://10.151.252.147/live/<?php echo $_GET['class']?>', type:'video/flv'},
                     
                       },
                       {
-                        0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'}
+                        0: {src: 'rtmp://10.151.252.147/live/<?php echo $_GET['class']?>', type:'video/flv'}
                       }
                     ]  
                   }, 
@@ -126,7 +128,7 @@ if(isset($_POST['logout'])){
             </div>        
           </div>
           <div class = "col-md-5 col-sm-5 col-xs-5">
-            <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>
+            <iframe id="iframe" class= "chat-frame" src="http://10.151.252.147:3000" scrolling="yes"></iframe>
           </div>
         </div>
       </div>
