@@ -98,7 +98,7 @@ if(isset($_POST['logout'])){
               <script type="text/javascript">
                 $(document).ready(function() {
                   projekktor('#player_a', {
-                    poster: 'http://projekktor.wlodkowski.net/media/intro.jpg',
+                    poster: '',
                     title: 'Projekktor - RTMP support',
                     playerFlashMP4: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
                     playerFlashMP3: 'http://projekktor.wlodkowski.net/lib/release/1.3.09/swf/StrobeMediaPlayback/StrobeMediaPlayback.swf',
@@ -108,11 +108,11 @@ if(isset($_POST['logout'])){
                     //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
                     playlist: [
                       {
-                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'},
+                        0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'},
                     
                       },
                       {
-                        0: {src: 'rtmp://10.151.36.70/live/test', type:'video/flv'}
+                        0: {src: 'rtmp://10.151.252.147/live/test', type:'video/flv'}
                       }
                     ]  
                   }, 
@@ -123,7 +123,7 @@ if(isset($_POST['logout'])){
                   );
                 });
               </script>
-            </div>         
+            </div>        
           </div>
           <div class = "col-md-5 col-sm-5 col-xs-5">
             <iframe id="iframe" class= "chat-frame" src="http://localhost:3000" scrolling="yes"></iframe>

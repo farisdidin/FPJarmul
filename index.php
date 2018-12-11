@@ -80,7 +80,7 @@ if(isset($_POST['logout'])){
                 </div>
               </li>
             </div>
-          </div>
+          </div>      
         </div>
       </nav>
 
