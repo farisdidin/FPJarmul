@@ -63,9 +63,9 @@ var_dump($_GET);
               <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="enroll-class.php">Enroll Course</a>
-              </li>
+              </li> -->
               <li class="nav-item active">
                 <a class="nav-link" href="choose-class.php">Your Courses</a>
               </li>
@@ -110,11 +110,11 @@ var_dump($_GET);
                     //platforms: ['browser', 'android', 'ios', 'native', 'flash', 'vlc'],
                     playlist: [
                       {
-                        0: {src: 'rtmp://10.151.252.147/live/<?php echo $_GET['class']?>', type:'video/flv'},
+                        0: {src: 'rtmp://10.151.252.163/live/<?php echo $_GET['class']?>', type:'video/flv'},
                     
                       },
                       {
-                        0: {src: 'rtmp://10.151.252.147/live/<?php echo $_GET['class']?>', type:'video/flv'}
+                        0: {src: 'rtmp://10.151.252.163/live/<?php echo $_GET['class']?>', type:'video/flv'}
                       }
                     ]  
                   }, 
@@ -128,7 +128,7 @@ var_dump($_GET);
             </div>        
           </div>
           <div class = "col-md-5 col-sm-5 col-xs-5">
-            <iframe id="iframe" class= "chat-frame" src="http://10.151.252.147:3000" scrolling="yes"></iframe>
+            <iframe id="iframe" class= "chat-frame" src="http://10.151.252.163:3000" scrolling="yes"></iframe>
           </div>
         </div>
       </div>

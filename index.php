@@ -61,11 +61,14 @@ if(isset($_POST['logout'])){
               <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="enroll-class.php">Enroll Course</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="choose-class.php">Your Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="upload.php">Upload</a>
               </li>
             </ul>
             <div class="div-inline my-2 my-lg-0">
