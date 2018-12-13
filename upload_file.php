@@ -34,7 +34,7 @@ if ((($_FILES["file"]["type"] == "video/mp4")
       {
         $_REQUEST["message"]= $_FILES["file"]["name"] . " already exists. ";
         // echo $_FILES["file"]["name"] . " already exists. ";
-        header("Location: upload.php");
+        header("Location: recorded.php");
       }
     else
       {
@@ -43,7 +43,7 @@ if ((($_FILES["file"]["type"] == "video/mp4")
         "upload/" . $_FILES["file"]["name"]);
         $message= "Stored in: " . "upload/" . $_FILES["file"]["name"];
         $_REQUEST["message"] = $message;
-        header("Location: upload.php");
+        header("Location: recorded.php");
       }
     }
   }

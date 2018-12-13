@@ -82,6 +82,9 @@ print_r($videos);
               <li class="nav-item active">
                 <a class="nav-link" href="upload.php">Upload</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="recorded.php">Video</a>
+              </li>
             </ul>
             <div class="div-inline my-2 my-lg-0">
             <li class="nav-item dropdown">
