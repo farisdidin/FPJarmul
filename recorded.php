@@ -115,7 +115,7 @@ if ($handle = opendir('./upload')) {
         <?php
         foreach($videos as $video){
             echo '<h4 class="text-white">'.$video.'</h4><br>';
-            echo '<video height="720" controls style="margin-top: 10px">';
+            echo '<video height="720" controls style="margin-top: 10px; margin-bottom: 50px">';
             echo '   <source src="http://10.151.252.163/upload/'.$video.'" type="video/mp4">';
             echo '   <!-- <source src="movie.ogg" type="video/ogg"> -->';
             echo '   Your browser does not support the video tag.';

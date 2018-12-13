@@ -95,7 +95,7 @@ if(isset($_POST['logout'])){
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
           <h5>Welcome, <?php echo $_SESSION["username"]; ?>!</h5>        
           <h1 class="display-2 m-t-30 m-b-20"><strong>TCtreaming</strong></h1>
-          <h3><i>Your Favorite Online Courses</i></h3>
+          <h3>Your Favorite Online Courses</h3>
         </div>
       </div>
 		</div>
