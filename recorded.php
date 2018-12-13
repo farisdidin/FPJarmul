@@ -30,7 +30,7 @@ if ($handle = opendir('./upload')) {
         foreach($videos as $video){
             echo "ada ".$video;
             echo '<video width="320" height="240"  controls>';
-            echo '   <source src="http://10.151.252.163:9994/upload/'.$video.'" type="video/mp4">';
+            echo '   <source src="http://10.151.252.163/upload/'.$video.'" type="video/mp4">';
             echo '   <!-- <source src="movie.ogg" type="video/ogg"> -->';
             echo '   Your browser does not support the video tag.';
             echo '</video>';
