@@ -8,6 +8,22 @@ if(isset($_POST['logout'])){
   header("Location: login.php");
 }
 
+$videos=array();
+if ($handle = opendir('./upload')) {
+
+  while (false !== ($entry = readdir($handle))) {
+
+      if ($entry != "." && $entry != "..") {
+
+          // echo "$entry\n";
+          array_push($videos,$entry);
+      }
+  }
+
+  closedir($handle);
+}
+// print_r($videos);
+
 ?>
 
 <!DOCTYPE html>
@@ -98,8 +114,8 @@ if(isset($_POST['logout'])){
         <div class="row justify-content-center">
         <?php
         foreach($videos as $video){
-            echo "<h4 class='m-b-10'> ".$video."</h4>";
-            echo '<video width="320" height="240" controls>';
+            echo '<h4 class="text-white">'.$video.'</h4><br>';
+            echo '<video height="720" controls style="margin-top: 10px">';
             echo '   <source src="http://10.151.252.163/upload/'.$video.'" type="video/mp4">';
             echo '   <!-- <source src="movie.ogg" type="video/ogg"> -->';
             echo '   Your browser does not support the video tag.';
