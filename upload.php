@@ -6,6 +6,23 @@ if(isset($_POST['logout'])){
   unset($_SESSION["user"]);
   header("Location: login.php");
 }
+var_dump($_REQUEST["message"]);
+$videos=array();
+if ($handle = opendir('./upload')) {
+
+  while (false !== ($entry = readdir($handle))) {
+
+      if ($entry != "." && $entry != "..") {
+
+          // echo "$entry\n";
+          array_push($videos,$entry);
+      }
+  }
+
+  closedir($handle);
+}
+print_r($videos);
+
 ?>
 
 <!DOCTYPE html>
@@ -84,13 +101,20 @@ if(isset($_POST['logout'])){
       <div class="container" style="margin-top: 60px;" >
         <div class="jumbotron text-center text-white" style="background-color: transparent !important">
           <h1 class="m-b-10">Upload</h1>
+          <?php
+            if(isset($_REQUEST["message"])){
+              echo "<h2>";
+              echo $_REQUEST["message"];
+              echo "</h2>";
+            }
+          ?>
         </div>
         <div class="row justify-content-center">
           <div class="col-2"></div>
           <div class="col-8">
-            <form method="POST" action="" >
+            <form method="POST" action="upload_file.php" enctype="multipart/form-data" >
               <div class="form-group files">
-                <input type="file" class="form-control" multiple="">
+                <input type="file" class="form-control" multiple="" name="file" >
               </div>
               <div class="container-login100-form-btn">
                 <input type="submit" class="login100-form-btn" name="upload" value="Upload"/>
